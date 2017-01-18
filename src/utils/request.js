@@ -15,9 +15,14 @@ function checkStatus(response) {
 }
 
 function parseErrorMessage({ data }) {
-  const { status, message } = data;
-  if (status === 'error') {
-    throw new Error(message);
+
+  if(data.needLogin){
+    throw new Error('全局错误,未登录');
+  }else{
+    const { resultCode, message } = data;
+    if (!resultCode||!data.code) {
+      throw new Error(message);
+    }
   }
   return { data };
 }
@@ -40,10 +45,8 @@ function parseErrorMessage({ data }) {
    checkStatus(response);
    const data = await response.json();
 
-   if(data.needLogin){
-ws.close()
-     window.location.href='/usercenter/login.html'
-
+   if(Number(data.code)||Number(data.resultCode)||data.needLogin){
+     parseErrorMessage({data})
    }
    const ret = {
      data,

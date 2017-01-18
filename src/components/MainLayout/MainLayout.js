@@ -10,10 +10,10 @@ function MainLayout({ children, location }) {
         <Header location={location} />
       </div>
       <div className={styles.content}>
-        <div className="menu-container ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4">
+        <div className="menu-container ant-col-xs-24">
           <TreeMenu/>
         </div>
-        <div className="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20">
+        <div className="main-container">
           {children}
         </div>
       </div>

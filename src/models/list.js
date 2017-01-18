@@ -11,29 +11,19 @@ export default {
   },
   effects: {
     *fetch({ payload: { page = 1 } }, { call, put }) {
-      try {
 
-           const { data } = yield call(listService.fetch, { page });
+     const { data } = yield call(listService.fetch, { page });
 
-           if(data.result){
-             yield put({
-               type: 'save',
-               payload: {
-                 data:data.result
-               },
-             });
-           }else{
-             throw data
-            // console.error(data)
-           }
-
-       } catch(error) {
-         // 或直接使用 `isCancelError(error)`
-         console.error(error)
-
-       }
-
-
+     if(data.result){
+       yield put({
+         type: 'save',
+         payload: {
+           data:data.result
+         },
+       });
+     }else{
+       
+     }
     },
   },
   subscriptions: {

@@ -3,13 +3,7 @@
   "disableCSSModules": false,
   "autoprefixer": null,
   "proxy": {
-    "/api/users*": {
-      "target": "http://jsonplaceholder.typicode.com/",
-      "changeOrigin": true,
-      "secure": false,
-       "pathRewrite": {"^/api" : ""}
-    },
-    "/api/v1/": {
+    "/api": {
       "target": "http://10.188.10.2/",
       "changeOrigin": true,
       "secure": false
