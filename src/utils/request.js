@@ -29,12 +29,22 @@ function parseErrorMessage({ data }) {
  * @return {object}           An object containing either "data" or "err"
  */
  export default async function request(url, options) {
+   options.headers={
+     Accept: 'application/json',
+     'Content-Type': 'application/json',
+     "Access-Control-Allow-Methods":"PUT,POST,GET,DELETE,OPTIONS",
+   }
+   options.credentials= 'include'
    const response = await fetch(url, options);
 
    checkStatus(response);
-
    const data = await response.json();
 
+   if(data.needLogin){
+ws.close()
+     window.location.href='/usercenter/login.html'
+
+   }
    const ret = {
      data,
      headers: {},

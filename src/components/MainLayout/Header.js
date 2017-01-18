@@ -21,6 +21,9 @@ function Header({ location }) {
       <Menu.Item key="/antd">
         <a href="https://github.com/dvajs/dva" target="_blank">dva</a>
       </Menu.Item>
+      <Menu.Item key="/list">
+        <Link to="/list"><Icon type="home" />列表</Link>
+      </Menu.Item>
     </Menu>
   );
 }

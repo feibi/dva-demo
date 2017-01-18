@@ -5,7 +5,6 @@ import { routerRedux } from 'dva/router';
 import styles from './Users.css';
 import { PAGE_SIZE } from '../../constants';
 import UserModal from './UserModal';
-import listColumns from './config'
 function Users({ dispatch,list: dataSource,loading, total, page: current }) {
   function deleteHandler(id) {
   console.warn(`TODO: ${id}`);
@@ -117,7 +116,7 @@ function createHandler(values) {
           </UserModal>
         </div>
         <Table
-          columns={listColumns}
+          columns={columns}
           dataSource={dataSource}
           bordered
           rowKey={record => record.id}

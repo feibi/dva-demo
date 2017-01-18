@@ -7,12 +7,16 @@ import Detail from "./routes/Detail.js";
 import Users from "./routes/Users.js";
 
 
+import List from "./routes/List.js";
+
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Route path="/" component={IndexPage} />
       <Route path="/detail" component={Detail} />
       <Route path="/users" component={Users} />
+      <Route path="/list" component={List} />
     </Router>
   );
 }
