@@ -1,4 +1,7 @@
 html, body, :global(#root) {
   height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
+}
+.ant-form-item{
+  margin-bottom: 10PX;
 }

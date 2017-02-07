@@ -86,13 +86,14 @@ export const listColumns = [
     title:'操作',
     key:'operation',
     fixed: 'right',
-    width:100,
+    width:120,
     render:(text,record,index)=>{
       return (
         <div className={style.operation}>
-          <a><Icon type="eye-o" /></a>
-          <a><Icon type="delete" /></a>
+          <a title="查看详情"><Icon type="eye-o" /></a>
           <a><Icon type="edit" /></a>
+          <a><Icon type="delete" /></a>
+          <a title="结算"><Icon type="calculator" /></a>
         </div>
       )
     }

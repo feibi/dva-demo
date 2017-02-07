@@ -25,6 +25,8 @@ app.model(require("./models/list"));
 
 app.model(require("./models/detail"));
 
+app.model(require("./models/search"));
+
 // 4. Router
 app.router(require('./router'));
 
