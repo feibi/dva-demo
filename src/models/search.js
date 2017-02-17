@@ -11,7 +11,7 @@ export default {
     }
   },
   effects : {
-    *fetchStore({}, {call, put}) {
+    *fetchStore({}, {call, put, s}) {
       const {data} = yield call(searchService.fetchStore, {});
       // const { status } = yield call(searchService.fetchStatus);
       if (data.result) {
@@ -23,31 +23,33 @@ export default {
         });
       }
     },
-    *fetchStatus({}, { call, put }) {
-     const { data } = yield call(searchService.fetchStatus,{});
-    // const { status } = yield call(searchService.fetchStatus);
-     if(data.result){
-       yield put({
-         type: 'save',
-         data: {
-           status:data.result,
-         },
-       });
-     }
+    *fetchStatus({}, {call, put}) {
+      const {data} = yield call(searchService.fetchStatus, {});
+      // const { status } = yield call(searchService.fetchStatus);
+      if (data.result) {
+        yield put({
+          type: 'save',
+          data: {
+            status: data.result
+          }
+        });
+      }
     },
-    *fetchCheckoutType({}, { call, put }) {
-     const { data } = yield call(searchService.fetchCheckoutType,{});
-    // const { status } = yield call(searchService.fetchStatus);
-     if(data.result){
-       console.log(data)
-       yield put({
-         type: 'save',
-         data: {
-           checkoutType:data.result,
-         },
-       });
-     }
+    *fetchCheckoutType({}, {call, put}) {
+      const {data} = yield call(searchService.fetchCheckoutType, {});
+      // const { status } = yield call(searchService.fetchStatus);
+      if (data.result) {
+        yield put({
+          type: 'save',
+          data: {
+            checkoutType: data.result
+          }
+        });
+      }
     },
+    *toSearch({}, {call, put}) {
+
+    }
   },
   subscriptions : {
     setup({

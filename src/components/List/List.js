@@ -1,18 +1,10 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Table, Pagination, Popconfirm , Button} from 'antd';
-import { routerRedux } from 'dva/router';
 import { PAGE_SIZE } from '../../constants';
 import styles from './List.css';
 import {listColumns} from './config'
-function List({ dispatch,list: dataSource,loading}) {
-
-  function pageChangeHandler(page) {
-    dispatch(routerRedux.push({
-      pathname: '/list',
-      query: { page },
-    }));
-  }
+function List({ dispatch,list: dataSource,loading,pageChangeHandler}) {
 
   let {currentPage,total,pageSize}=dataSource
 
@@ -26,7 +18,6 @@ function List({ dispatch,list: dataSource,loading}) {
           rowKey={record => record.id}
           loading={loading}
           pagination={false}
-          scroll={{ x: 1300 }}
           size="middle"
         />
         <Pagination

@@ -22,7 +22,6 @@ export default {
   subscriptions: {
     setup({ dispatch, history },done) {
       dispatch({type: 'fetch'})
-      console.log('app')
     },
   },
 };

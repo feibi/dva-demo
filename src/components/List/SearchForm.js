@@ -25,7 +25,8 @@ class SearchForm extends Component {
   }
   handleSearch = (e) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const {form,dispatch,onSearch}=this.props;
+    form.validateFields((err, values) => {
       if (err) {
         return
       }
@@ -34,6 +35,8 @@ class SearchForm extends Component {
         ...values,
         'createDate': rangeValue && [rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')]
       }
+
+      onSearch(fieldsValue)
       console.log('Received values of form: ', fieldsValue);
     });
   }

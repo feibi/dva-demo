@@ -1,4 +1,5 @@
 import * as listService from '../services/list';
+import { parse } from 'qs'
 export default {
   namespace: 'list',
   state: {
@@ -10,9 +11,9 @@ export default {
     },
   },
   effects: {
-    *fetch({ payload: { page = 1 } }, { call, put }) {
+    *fetch({ payload }, { call, put }) {
 
-     const { data } = yield call(listService.fetch, { page });
+     const { data } = yield call(listService.fetch, parse(payload));
 
      if(data.result){
        yield put({
