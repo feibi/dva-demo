@@ -33,5 +33,8 @@ function List({dispatch}) {
   );
 }
 
+function mapStateToProps ({ users }) {
+  return { users }
+}
 
-export default List;
+export default connect(mapStateToProps)(List);
