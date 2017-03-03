@@ -14,6 +14,11 @@ function List({dispatch}) {
         payload: fieldsValue
       })
     },
+    onRequest (){
+      dispatch({
+        type: 'search/fetch'
+      })
+    }
   }
 
   const listProps={

@@ -11,45 +11,25 @@ export default {
     }
   },
   effects : {
-    *fetchStore({}, {call, put, s}) {
-      const {data} = yield call(searchService.fetchStore, {});
-      // const { status } = yield call(searchService.fetchStatus);
-      if (data.result) {
-        yield put({
-          type: 'save',
-          data: {
-            store: data.result
-          }
-        });
-      }
+    // *toSearch({}, {call, put}) {
+    //
+    // }
+    *fetch({}, {call, put}) {
+      // [store,status,checkoutType]
+      const [store,status,checkoutType] = yield [
+        call(searchService.fetchStore),
+        call(searchService.fetchStatus),
+        call(searchService.fetchCheckoutType)
+      ];
+      yield put({
+        type: 'save',
+        data: {
+            store:store&&store.data&&store.data.result,
+            status:status&&status.data&&status.data.result,
+            checkoutType:checkoutType&&checkoutType.data&&checkoutType.data.result
+        }
+      });
     },
-    *fetchStatus({}, {call, put}) {
-      const {data} = yield call(searchService.fetchStatus, {});
-      // const { status } = yield call(searchService.fetchStatus);
-      if (data.result) {
-        yield put({
-          type: 'save',
-          data: {
-            status: data.result
-          }
-        });
-      }
-    },
-    *fetchCheckoutType({}, {call, put}) {
-      const {data} = yield call(searchService.fetchCheckoutType, {});
-      // const { status } = yield call(searchService.fetchStatus);
-      if (data.result) {
-        yield put({
-          type: 'save',
-          data: {
-            checkoutType: data.result
-          }
-        });
-      }
-    },
-    *toSearch({}, {call, put}) {
-
-    }
   },
   subscriptions : {
     setup({
@@ -58,9 +38,7 @@ export default {
     }, done) {
       return history.listen(({pathname, query}) => {
         if (pathname === '/list') {
-          dispatch({type: 'fetchStore'});
-          dispatch({type: 'fetchStatus'});
-          dispatch({type: 'fetchCheckoutType'});
+          //dispatch({type: 'fetch'});
         }
       });
     }

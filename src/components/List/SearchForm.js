@@ -58,6 +58,15 @@ class SearchForm extends Component {
     console.log(dates, dateStrings)
   }
 
+  componentDidMount(){
+      let {store, status, checkoutType,onRequest} = this.props
+
+      if(!store){
+        onRequest();
+      }
+
+  }
+
   render() {
     const expand = this.state.expand;
     const {getFieldDecorator} = this.props.form;
@@ -147,7 +156,11 @@ class SearchForm extends Component {
 const WrappedSearchForm = Form.create()(SearchForm)
 function mapStateToProps(state) {
   const {search} = state
-  return {store: search.store, status: search.status, checkoutType: search.checkoutType};
+  return {
+    store: search.store,
+    status: search.status,
+    checkoutType: search.checkoutType
+  };
 }
 
 export default connect(mapStateToProps)(WrappedSearchForm);
